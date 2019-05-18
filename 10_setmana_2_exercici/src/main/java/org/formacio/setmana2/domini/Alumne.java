@@ -42,7 +42,7 @@ public class Alumne {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Alumne)) return false;
         Alumne alumne = (Alumne) o;
         return Objects.equals(nom, alumne.nom);
     }
