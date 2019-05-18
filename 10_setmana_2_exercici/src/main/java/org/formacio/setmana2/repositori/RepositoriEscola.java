@@ -35,11 +35,13 @@ public class RepositoriEscola {
         Matricula matricula = new Matricula();
         Alumne alumne1 = getEntityManager().find(Alumne.class, alumne);
         Curs curs1 = carregaCurs(curs);
-
-        matricula.setAlumne(alumne1);
-        matricula.setCurs(curs1);
-        getEntityManager().persist(matricula);
-
+        if (alumne1.getEdat() < curs1.getEdatMinima()) {
+            throw new EdatIncorrecteException();
+        } else {
+            matricula.setAlumne(alumne1);
+            matricula.setCurs(curs1);
+            getEntityManager().persist(matricula);
+        }
         return matricula;
     }
 
