@@ -1,5 +1,6 @@
 package org.formacio.setmana2.repositori;
 
+import org.formacio.setmana2.domini.Alumne;
 import org.formacio.setmana2.domini.Curs;
 import org.formacio.setmana2.domini.Matricula;
 import org.springframework.stereotype.Repository;
@@ -31,7 +32,15 @@ public class RepositoriEscola {
     }
 
     public Matricula apunta(String alumne, String curs) throws EdatIncorrecteException {
-        return null;
+        Matricula matricula = new Matricula();
+        Alumne alumne1 = getEntityManager().find(Alumne.class, alumne);
+        Curs curs1 = carregaCurs(curs);
+
+        matricula.setAlumne(alumne1);
+        matricula.setCurs(curs1);
+        getEntityManager().persist(matricula);
+
+        return matricula;
     }
 
 
